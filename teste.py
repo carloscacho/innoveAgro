@@ -91,9 +91,8 @@ while(1):
         hsv = cv2.filter2D(hsv,-1,kernel)
         hsv = cv2.blur(hsv,(5,5))
 
-        foto = hsv.astype(unit8)
+        
 
-        circles = cv2.HoughCircles(foto,cv2.HOUGH_GRADIENT,1,20,param1=50,param2=30,minRadius=0,maxRadius=0)
         # Threshold the HSV image to get only blue colors
         mask = cv2.inRange(hsv, lower_blue, upper_blue)
 

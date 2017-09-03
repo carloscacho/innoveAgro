@@ -17,11 +17,13 @@ troquei = False;
 cores = []
 cores.append([33,187,200])
 cores.append([41,176,184])
-
+#amarelo
 cores.append([81,221,255])
 cores.append([55,174,189])
-
-
+#marron-escuro
+cores.append([47,87,129])
+cores.append([81,181,216])
+#cores.append([47,87,129])
 
 # blue = float(sys.argv[1])/255.0
 # green = float(sys.argv[2])/255.0
@@ -32,13 +34,13 @@ cores.append([55,174,189])
 # red2 = float(sys.argv[6])/255.0
 
 
-blue = cores[2][0]
-green = cores[2][1]
-red = cores[2][2]
+blue = cores[4][0]
+green = cores[4][1]
+red = cores[4][2]
 
-blue2 = cores[2][0]
-green2 = cores[2][1]
-red2 = cores[2][2]
+blue2 = cores[5][0]
+green2 = cores[5][1]
+red2 = cores[5][2]
 
 color = np.float32([[[blue, green, red]]])
 hsv_color = cv2.cvtColor(color, cv2.COLOR_BGR2HSV)
@@ -82,7 +84,6 @@ hsv = cv2.filter2D(hsv,-1,kernel)
 hsv = cv2.blur(hsv,(5,5))
 
 
-
 # Threshold the HSV image to get only blue colors
 mask = cv2.inRange(hsv, lower_blue, upper_blue)
 
@@ -91,11 +92,11 @@ res = cv2.bitwise_and(frame,frame, mask= mask)
 
 img_rgb = res
 img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
-template = cv2.imread('grao.png',0)
+template = cv2.imread('graoBom.png',0)
 w, h = template.shape[::-1]
 
 rescir = cv2.matchTemplate(img_gray,template,cv2.TM_CCOEFF_NORMED)
-threshold = 0.5
+threshold = 0.6
 loc = np.where( rescir >= threshold)
 count = 0
 listPoit = []
@@ -109,7 +110,7 @@ for pt in zip(*loc[::-1]):
         for i in listPoit:
             x, y = i
             ptx, pty = pt
-            if ((x-20 < ptx) and (ptx < x+20)) and ((y-20 < pty) and (pty < y+20)):
+            if ((x - w-2 < ptx) and (ptx < x+ w+2)) and ((y- h-2 < pty) and (pty < y+ h+2)):
                 #print " ja existe"
                 contem = True
 
@@ -124,8 +125,9 @@ print count
 cv2.imshow('frame',frame)
 cv2.imshow('mask',mask)
 cv2.imshow('res',res)
-k = cv2.waitKey(0)
-# if k == 27:
-#     break
+while True:
+    ch = cv2.waitKey(27)
+    if ch == 27:#Escape
+        cv2.destroyAllWindows()
 
-cv2.destroyAllWindows()
+        break

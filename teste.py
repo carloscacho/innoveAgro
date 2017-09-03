@@ -82,7 +82,7 @@ for cor in range(0,3):
     hsv = cv2.filter2D(hsv,-1,kernel)
     hsv = cv2.blur(hsv,(5,5))
 
-
+    cv2.imshow('original',frame)
     # Threshold the HSV image to get only blue colors
     mask = cv2.inRange(hsv, lower_blue, upper_blue)
 
@@ -96,7 +96,7 @@ for cor in range(0,3):
     if cor == 1:
         template = cv2.imread('graoBom.png',0)
     if cor == 2:
-        template = cv2.imread('graoBom.png',0)
+        template = cv2.imread('graoMarron.png',0)
     w, h = template.shape[::-1]
 
     rescir = cv2.matchTemplate(img_gray,template,cv2.TM_CCOEFF_NORMED)

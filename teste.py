@@ -140,9 +140,15 @@ figure(1, figsize=(6,6))
 ax = axes([0.1, 0.1, 0.8, 0.8])
 
 # The slices will be ordered and plotted counter-clockwise.
-labels = 'verde', 'bom', 'marron'
+labels = 'verde', 'bom', 'marron','outros'
+
+contar = 0
+for ct in contabil:
+    contar += ct
+
+contabil.append(32 - contar)
 fracs = contabil
-explode=(0, 0.05, 0)
+explode=(0, 0.05, 0, 0)
 
 pie(fracs, explode=explode, labels=labels,
                 autopct='%1.1f%%', shadow=True, startangle=90)

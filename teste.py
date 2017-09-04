@@ -1,6 +1,12 @@
+import sys
 import cv2
 import numpy as np
 from pylab import *
+
+amostraSize = 32
+if len(sys.argv) > 1:
+    amostraSize = int(sys.argv[1])
+
 
 contabil = []
 #definicoo do intervalo de cores
@@ -44,7 +50,7 @@ for cor in range(0,3):
 
     # Coleta dos frames
     # _, frame = cap.read()
-    frame  = cv2.imread('amosta.jpeg')
+    frame  = cv2.imread('amostras/quatro.jpeg')
 
     #jogar fora metade das imagens no video
     # jogafora = True
@@ -73,13 +79,13 @@ for cor in range(0,3):
 
     img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
     if cor == 0:
-        template = cv2.imread('grao.png',0)
+        template = cv2.imread('graos/grao.png',0)
         threshold = 0.6
     if cor == 1:
-        template = cv2.imread('graoBomTest.png',0)
+        template = cv2.imread('graos/graoBomTest.png',0)
         threshold = 0.75
     if cor == 2:
-        template = cv2.imread('graoMarronTest.png',0)
+        template = cv2.imread('graos/graoMarronTest.png',0)
         threshold = 0.6
     w, h = template.shape[::-1]
 
@@ -124,7 +130,7 @@ for cor in range(0,3):
 contar = 0
 for ct in contabil:
     contar += ct
-contabil.append(20 - contar)
+contabil.append(amostraSize - contar)
 
 #geracao do grafico em pizza
 figure(1, figsize=(6,6))

@@ -1,5 +1,11 @@
 # innoveAgro
 
+Esse é um programa que realiza uma analise em graos de soja, para verificar se em um conjunto de grãos, o programa lê uma imagem onde são idetificados grãos ardidos, verdes e mofados, os teste estão bem preliminares, mas apresenta acertos interessantes 
+
+<img src="https://raw.githubusercontent.com/carloscacho/innoveAgro/master/results/amalise2.png" alt="imagem de um resultado de uma analise de grãos">
+
+Como pode ser visto na imagem o programa realiza uma separação dos graos por cores e o mesmo realiza a conta de quantos grãos bons, verdes, marrons(ardidos e mofados), estão na imagem e ao final apresenta um grafico que diz a porcentagem de cada uma das cores.
+# License
 
 The MIT License (MIT)
 
@@ -26,11 +32,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           
 ## Requerimentos
 python 2.7
+
 openCV
+
 numPY
 
 
 # Run
-python teste.py
+python teste.py (Tamanho_da_Amostra)? 
 
 

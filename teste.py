@@ -43,14 +43,14 @@ for cor in range(0,3):
     hue = hsv_color[0][0][0]
     hue2 = hsv_color2[0][0][0]
 
-    #capitura de vido
+    #captura de video
     #cap = cv2.VideoCapture(0)
 
     # while(1):
 
     # Coleta dos frames
     # _, frame = cap.read()
-    frame  = cv2.imread('amostras/quatro.jpeg')
+    frame  = cv2.imread('amostras/soja4.jpeg')
 
     #jogar fora metade das imagens no video
     # jogafora = True
@@ -79,7 +79,7 @@ for cor in range(0,3):
 
     img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
     if cor == 0:
-        template = cv2.imread('graos/grao.png',0)
+        template = cv2.imread('graos/grao.jpg',0)
         threshold = 0.6
     if cor == 1:
         template = cv2.imread('graos/graoBomTest.png',0)
@@ -97,7 +97,7 @@ for cor in range(0,3):
     #busca dos elementos similares
     for pt in zip(*loc[::-1]):
         if listPoit == []:
-            listPoit.append(pt);
+            listPoit.append(pt)
             count = 1
             cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
         else:
